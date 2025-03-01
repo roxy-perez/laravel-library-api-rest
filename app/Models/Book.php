@@ -17,6 +17,13 @@ class Book extends Model
         'stock',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'date:Y-m-d',
+        ];
+    }
+
     public function author()
     {
         return $this->belongsTo(Author::class);
