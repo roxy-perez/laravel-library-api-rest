@@ -4,7 +4,6 @@ namespace App\Services\API\V1;
 
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use App\Services\API\V1\ApiResponseService;
 use App\Contracts\API\Auth\AuthServiceInterface;
 
 class AuthSanctumService implements AuthServiceInterface

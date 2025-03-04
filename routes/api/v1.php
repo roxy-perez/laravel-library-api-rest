@@ -7,6 +7,8 @@ use App\Http\Controllers\API\V1\Auth\{
     LogoutController
 };
 
+use App\Http\Controllers\API\V1\Library\{AuthorController, GenreController};
+
 Route::prefix('auth')->group(function (){
     Route::post('register', RegisterController::class);
     Route::post('login', LoginController::class);
@@ -14,4 +16,9 @@ Route::prefix('auth')->group(function (){
     Route::group(['middleware' => 'auth:sanctum'], static function () {
         Route::post('logout', LogoutController::class);
     });
+});
+
+Route::prefix('library')->middleware('auth:sanctum')->group(function(){
+    Route::apiResource('authors', AuthorController::class);
+    Route::apiResource('genres', GenreController::class);
 });
