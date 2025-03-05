@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\API\V1\Library;
 
-use App\Models\Author;
-use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\Controller;
-use App\Services\API\V1\ApiResponseService;
-use App\Http\Resources\API\V1\AuthorResource;
+use App\Http\Controllers\API\V1\Controller;
 use App\Http\Requests\API\V1\Author\StoreAuthorRequest;
 use App\Http\Requests\API\V1\Author\UpdateAuthorRequest;
+use App\Http\Resources\API\V1\AuthorResource;
+use App\Models\Author;
+use App\Services\API\V1\ApiResponseService;
+use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response as CodeResponse;
 
 class AuthorController extends Controller
@@ -64,6 +64,14 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author): JsonResponse
     {
+        //Comprobar si el autor tiene libros asociados
+        if ($author->books()->count() > 0) {
+            return ApiResponseService::error(
+                'Author has books associated.',
+                CodeResponse::HTTP_CONFLICT
+            );
+        }
+
         $author->delete();
         return ApiResponseService::success(
             null,

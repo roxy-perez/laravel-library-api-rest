@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API\V1\Auth;
 
-use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\Controller;
 use App\Contracts\API\Auth\AuthServiceInterface;
+use App\Http\Controllers\API\V1\Controller;
+use Illuminate\Http\JsonResponse;
 
 class LogoutController extends Controller
 {
