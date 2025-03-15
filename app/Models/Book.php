@@ -22,6 +22,8 @@ class Book extends Model
     {
         return [
             'published_at' => 'date:Y-m-d',
+            'stock' => 'integer',
+            'pages' => 'integer',
         ];
     }
 
