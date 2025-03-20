@@ -8,7 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class AuthorResource extends JsonResource
 {
     /**
-     * 
+     *
      *
      * @mixin \App\Models\Author
      */
@@ -18,7 +18,7 @@ class AuthorResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'created_at' => $this->created_at,
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }
 }
